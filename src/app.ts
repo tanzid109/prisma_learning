@@ -5,7 +5,8 @@ import config from "./config";
 import { prisma } from "./lib/prisma";
 import httpStatus from "http-status";
 import bcrypt from "bcryptjs";
-import { userRoute } from "./modules/users/user.route";
+import { userRoutes } from "./modules/users/user.route";
+import { authRoutes } from "./modules/auth/auth.route";
 
 const app: Application = express();
 
@@ -25,6 +26,8 @@ app.get("/", async (req: Request, res: Response) => {
   res.send("Hello prisma");
 });
 
-app.use("/api/users", userRoute);
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
+
 
 export default app;
